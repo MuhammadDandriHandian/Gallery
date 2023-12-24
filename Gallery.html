@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery Presiden Republik Indonesia</title>
+    <style>
+        body {
+            background-color: #ccc;
+        }
+        h1 {
+            text-align: center;
+            font-family:Verdana, Geneva, Tahoma, sans-serif;
+            text-shadow: 0 -3px 5px white,
+                0 3px 5px white;
+        }
+        .container {
+            width: 800px;
+            background-color: white;
+            margin: 50px auto;
+            border-radius: 8px;
+            box-shadow: 0 0 5px 2px black;
+            padding: 20px;
+            position: relative;
+        }
+        .gallery li {
+            width: 170px;
+            height: 170px;
+            list-style: none;
+            text-decoration: none;
+            border: solid 2px grey;
+            border-radius: 50%;
+            /* overflow: hidden; */
+            margin: 0 5px;
+        }
+        .satu li {
+            float: left;
+        }
+        .dua li {
+            float:left;
+            display: block;
+            margin: 5px 5px;
+        }
+        .dua {
+            margin: 0 95px;
+        }
+        .gallery li a img {
+            border-radius: 50%;
+        }
+        .gallery span {
+            background-color: rgba(200, 200, 200, 0.5);
+            color: black;
+            display: block;
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            text-decoration: none;
+            text-align: center;
+            font-weight: bold;
+            font-size: 18px;
+            line-height: 170px;
+            position: absolute;
+            opacity: 0;
+            transition: 0.5s; 
+        }
+        .satu span {
+            top: 38px;
+        }
+        .dua span {
+            top: 217px;
+        }
+        .gallery a:hover span{
+            opacity: 1;
+            transform: rotate(360deg);
+        }
+        .clear {
+            clear: both;
+        }
+        .overlay {
+            width: 0;
+            height: 0;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            left: 0;
+            text-align: center;
+            z-index: 9999;
+            transition: 0.7s;
+            padding: 100px 0;
+            animation: gambar;
+        }
+        .overlay:target {
+            right: 0;
+            bottom: 0;
+            width: auto;
+            height: auto;
+            background-color: rgba(0, 0, 0, .7);
+        }
+        .overlay img {
+            max-height: 100%;
+            box-shadow: 5px 5px 50px red;
+        }
+        .overlay:target img {
+            animation: gambar 1s;
+        }
+        @keyframes gambar {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        .close {
+            position: absolute;
+            top: 70px;
+            left: 48%;
+            text-align: center;
+            text-decoration: none;
+            color: #aaa;
+            font-weight: bold;
+            transition: .7s;
+            opacity: 0;
+        }
+        .close:hover {
+            text-shadow: 0px 1px 5px #aaa, 0 -1px 5px #aaa;
+        }
+        .overlay:target .close {
+            animation: close 1s 1s forwards;
+        }
+        @keyframes close {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        .next, .prev {
+            background-image: url(./assets/right.png);
+            width: 128px;
+            height: 128px;
+            position: absolute;
+            top: 40%;
+            margin-left: 70px;
+            opacity: 0;
+        }
+        .prev {
+            background-image: url(./assets/left.png);
+            margin-left: -200px;
+        }
+        .overlay:target .prev,
+        .overlay:target .next {
+            animation: close 1s 1s forwards;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Daftar Presiden Republik Indonesia</h1>
+    <div class="container">
+        <ul class="gallery satu">
+            <li>
+                <a href="#gambar-1">
+                    <img src="./assets/thumb/soekarno.jpg" alt="Ir Soekarno">
+                    <span>Ir Soekarno</span>
+                </a>
+                <div class="overlay" id="gambar-1">
+                    <a href="#" class="close">x close</a>
+                    <img src="./assets/full/soekarno.jpg" alt="Ir Soekarno">
+                    <a href="#gambar-2" class="next"></a>
+                </div>
+            </li>
+            <li>
+                <a href="#gambar-2">
+                    <img src="./assets/thumb/soeharto.jpg" alt="Jendral Soeharto">
+                    <span>Jendral Soeharto</span>
+                </a>
+                <div class="overlay" id="gambar-2">
+                    <a href="#" class="close">x close</a>
+                    <a href="#gambar-1" class="prev"></a>
+                    <img src="./assets/full/soeharto.jpg" alt="Jendral Soeharto">
+                    <a href="#gambar-3" class="next"></a>
+                </div>
+            </li>
+            <li>
+                <a href="#gambar-3">
+                    <img src="./assets/thumb/habibie.jpg" alt="Bj Habibie">
+                    <span>BJ Habibie</span>
+                </a>
+                <div class="overlay" id="gambar-3">
+                    <a href="#" class="close">x close</a>
+                    <a href="#gambar-2" class="prev"></a>
+                    <img src="./assets/full/habibie.jpg" alt="BJ Habibie">
+                    <a href="#gambar-4" class="next"></a>
+                </div>
+            </li>
+            <li>
+                <a href="#gambar-4">
+                    <img class="gusdur" src="./assets/thumb/gusdur.jpg" alt="Gusdur" width="170px">
+                    <span>Gusdur</span>
+                </a>
+                <div class="overlay" id="gambar-4">
+                    <a href="#" class="close">x close</a>
+                    <a href="#gambar-3" class="prev"></a>
+                    <img src="./assets/full/gusdur.jpg" alt="Gusdur">
+                    <a href="#gambar-5" class="next"></a>
+                </div>
+            </li>
+        </ul>
+        <ul class="gallery dua">
+            <li>
+                <a href="#gambar-5">
+                    <img src="./assets/thumb/megawati.jpg" alt="Megawati" >
+                    <span>Megawati</span>
+                </a>
+                <div class="overlay" id="gambar-5">
+                    <a href="#" class="close">x close</a>
+                    <a href="#gambar-4" class="prev"></a>
+                    <img src="./assets/full/megawati.jpg" alt="Megawati Soekarno Putri">
+                    <a href="#gambar-6" class="next"></a>
+                </div>
+            </li>
+            <li>
+                <a href="#gambar-6">
+                    <img src="./assets/thumb/sby.jpg" alt="Susilo Bambang Y">
+                    <span>Susilo Bambang Y</span>
+                </a>
+                <div class="overlay" id="gambar-6">
+                    <a href="#" class="close">x close</a>
+                    <a href="#gambar-5" class="prev"></a>
+                    <img src="./assets/full/sby.jpg" alt="Susilo Bambang Yudoyono">
+                    <a href="#gambar-7" class="next"></a>
+                </div>
+            </li>
+            <li>
+                <a href="#gambar-7">
+                    <img src="./assets/thumb/jokowi.jpg" alt="Joko Widodo">
+                    <span>Joko Widodo</span>
+                </a>
+                <div class="overlay" id="gambar-7">
+                    <a href="#" class="close">x close</a>
+                    <a href="#gambar-6" class="prev"></a>
+                    <img src="./assets/full/Jokowi.jpg" alt="Joko Widodo">
+                </div>
+            </li>
+            <div class="clear"></div>
+        </ul>
+    </div>
+</body>
+</html>
